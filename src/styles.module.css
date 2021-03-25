@@ -7,3 +7,41 @@
   font-size: 2em;
   text-align: center;
 }
+
+.scrollWrapper::-webkit-scrollbar {
+  display: none;
+
+}
+.scrollWrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  user-select: inherit;
+}
+
+
+.scrollContent {
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  scrollbar-width: none;
+}
+
+.scrollBar {
+  width: 12px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #00000011;
+}
+
+.scrollTracker {
+  background-color: #00000050;
+  width: 100%;
+  height: 200px;
+  border-radius: 6px;
+  cursor: pointer;
+}
