@@ -8,16 +8,16 @@ const App = () => {
     <div className='container'>
 
       <div className='box'>
-        <ReactScroll>
+        <ReactScroll debug width={7} color="red">
           <div style={{ padding: 10 }}>
             {Array(20).fill().map((_, index) => (
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Laboriosam fuga hic totam veritatis unde quas a, ipsa quos,
-              quibusdam sequi sapiente architecto ut quam nostrum corrupti vero
-              quasi, recusandae ad.
-            </p>
-            )}
+              <p key={index}>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Laboriosam fuga hic totam veritatis unde quas a, ipsa quos,
+                quibusdam sequi sapiente architecto ut quam nostrum corrupti vero
+                quasi, recusandae ad.
+              </p>
+            ))}
           </div>
         </ReactScroll>
       </div>

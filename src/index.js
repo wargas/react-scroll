@@ -1,8 +1,13 @@
 /* eslint-disable no-undef */
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './styles.module.css'
 
-export const ReactScroll = ({ children }) => {
+export const ReactScroll = ({
+  children,
+  debug = false,
+  width = 10,
+  color = '#00000010'
+}) => {
   const [showScroll, setShowScroll] = useState(false)
   const [barTop, setBarTop] = useState(100)
   const [barHeight, setBarHeight] = useState(200)
@@ -12,9 +17,7 @@ export const ReactScroll = ({ children }) => {
 
   const [mouseConnected, setMouseConnected] = useState(false)
 
-  const [refBar, setRefBar] = useState(null)
   const [refWrapper, setRefWrapper] = useState(null)
-  const [refTraker, setRefTraker] = useState(null)
   const [refContent, setRefContent] = useState(null)
 
   const [moveY, setmoveY] = useState(0)
@@ -63,7 +66,7 @@ export const ReactScroll = ({ children }) => {
 
     setBarHeight(
       (refWrapper.clientHeight / refContent.scrollHeight) *
-      refWrapper.clientHeight
+        refWrapper.clientHeight
     )
 
     setBarTop(
@@ -84,11 +87,14 @@ export const ReactScroll = ({ children }) => {
       className={styles.scrollWrapper}
     >
       {showScroll && (
-        <div ref={setRefBar} className={styles.scrollBar}>
+        <div style={{ width: width }} className={styles.scrollBar}>
           <div
-            ref={setRefTraker}
             onMouseDown={handlerMouseDown}
-            style={{ marginTop: barTop, height: barHeight }}
+            style={{
+              marginTop: barTop,
+              height: barHeight,
+              backgroundColor: color
+            }}
             className={styles.scrollTracker}
           />
         </div>
@@ -98,37 +104,31 @@ export const ReactScroll = ({ children }) => {
         onScroll={handlerScroll}
         className={styles.scrollContent}
       >
-        <div style={{
-          position: 'fixed',
-          right: 0,
-          bottom: 0,
-          width: 200,
-          backgroundColor: '#00000035',
-          padding: 10,
-            color: 'white'
-        }}>
-          {JSON.stringify({
-            barTop
-          })}
-          {JSON.stringify({
-            barHeight
-          })}
-          {JSON.stringify({
-            wrapperHeight
-          })}
-          {JSON.stringify({
-            contentHeight
-          })}
-          {JSON.stringify({
-            contentScroll
-          })}
-          {JSON.stringify({
-            mouseConnected
-          })}
-          {JSON.stringify({
-            moveY
-          })}
-        </div>
+        {debug && (
+          <div className={styles.debug}>
+            {JSON.stringify({
+              barTop
+            })}
+            {JSON.stringify({
+              barHeight
+            })}
+            {JSON.stringify({
+              wrapperHeight
+            })}
+            {JSON.stringify({
+              contentHeight
+            })}
+            {JSON.stringify({
+              contentScroll
+            })}
+            {JSON.stringify({
+              mouseConnected
+            })}
+            {JSON.stringify({
+              moveY
+            })}
+          </div>
+        )}
         {children}
       </div>
     </div>
