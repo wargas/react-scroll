@@ -86,24 +86,12 @@ export const ReactScroll = ({
       style={{ userSelect: mouseConnected ? 'none' : 'inherit' }}
       className={styles.scrollWrapper}
     >
-      {showScroll && (
-        <div style={{ width: width }} className={styles.scrollBar}>
-          <div
-            onMouseDown={handlerMouseDown}
-            style={{
-              marginTop: barTop,
-              height: barHeight,
-              backgroundColor: color
-            }}
-            className={styles.scrollTracker}
-          />
-        </div>
-      )}
       <div
         ref={setRefContent}
         onScroll={handlerScroll}
         className={styles.scrollContent}
       >
+        {children}
         {debug && (
           <div className={styles.debug}>
             {JSON.stringify({
@@ -129,8 +117,20 @@ export const ReactScroll = ({
             })}
           </div>
         )}
-        {children}
       </div>
+      {showScroll && (
+        <div style={{ width: width }} className={styles.scrollBar}>
+          <div
+            onMouseDown={handlerMouseDown}
+            style={{
+              marginTop: barTop,
+              height: barHeight,
+              backgroundColor: color
+            }}
+            className={styles.scrollTracker}
+          />
+        </div>
+      )}
     </div>
   )
 }

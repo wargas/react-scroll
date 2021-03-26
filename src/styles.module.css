@@ -15,7 +15,7 @@
 
 .scrollContent::-webkit-scrollbar {
   display: none;
-
+  width: 0;
 }
 .scrollWrapper {
   width: 100%;
